@@ -6,6 +6,5 @@
     operation Dumpmachine () : Unit {
         use qubit = Qubit();
         use qubit2 = Qubit();
-    
     }
 }

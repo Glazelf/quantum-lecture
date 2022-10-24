@@ -16,4 +16,21 @@ namespace quantum {
         CNOT(input, output);
         X(input);
     }
+    operation IsBlackBoxConstant(blackbox:((Qubit, Qubit)=> Unit)):(Bool) {
+        mutable inputResult = Zero;
+        mutable outputResult = Zero;
+        use qbites = Qubit[2] {
+            let qbits = [];
+            let input = qbits[0];
+            let output = qbits[1];
+            X(input);
+            X(output);
+            H(input);
+            H(output);
+            set inputResult = M(input);
+            set outputResult = M(output);
+            ResetAll(qbits);
+        }
+        return One == inputResult;
+    }
 }
